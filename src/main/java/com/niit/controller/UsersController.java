@@ -19,8 +19,9 @@ public class UsersController {
 private UsersDAO usersDAO;
 
 @PostMapping(value="/register")
-public ResponseEntity<Users> adduser( Users users){
+public ResponseEntity<Users> adduser(@RequestBody Users users){
 	System.out.println("hello");
+	users.setStatus('n');
 	usersDAO.saveOrUpdate(users);
 	return new ResponseEntity<Users>(users, HttpStatus.OK);
 	

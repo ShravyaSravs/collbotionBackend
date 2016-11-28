@@ -1,5 +1,7 @@
 package com.niit.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,42 +13,45 @@ import org.springframework.stereotype.Component;
 @Table
 @Component
 public class Blog {
-	
 	@Id
 	@GeneratedValue
-	private int bid;
-	private int b_userid;
-	private String blogName;
-	private String blogDesc;
-	private String blogtime;
-	public int getBid() {
-		return bid;
+	private int id;
+	private String title;
+	private int userid;
+	private Date doc;
+	private String content;
+	public int getId() {
+		return id;
 	}
-	public void setBid(int bid) {
-		this.bid = bid;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public int getB_userid() {
-		return b_userid;
+	public String getTitle() {
+		return title;
 	}
-	public void setB_userid(int b_userid) {
-		this.b_userid = b_userid;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getBlogName() {
-		return blogName;
+	public int getUserid() {
+		return userid;
 	}
-	public void setBlogName(String blogName) {
-		this.blogName = blogName;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
-	public String getBlogDesc() {
-		return blogDesc;
+	
+		public String getContent() {
+		return content;
 	}
-	public void setBlogDesc(String blogDesc) {
-		this.blogDesc = blogDesc;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public String getBlogtime() {
-		return blogtime;
+	public Date getDoc() {
+		return doc;
 	}
-	public void setBlogtime(String blogtime) {
-		this.blogtime = blogtime;
+	public void setDoc(Date doc) {
+		this.doc = doc;
 	}
+	
+	
+
 }

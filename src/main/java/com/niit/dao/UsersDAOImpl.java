@@ -3,6 +3,7 @@ package com.niit.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,25 +11,38 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.model.Users;
 
-@SuppressWarnings("deprecation")
-@Repository
+@Repository(value="usersDAO")
 public class UsersDAOImpl implements UsersDAO {
+
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
-	/* Used for creating or updating user */
+	public UsersDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory=sessionFactory;
+	}
 	@Transactional
-	public void saveOrUpdate(Users users) {
-		sessionFactory.getCurrentSession().saveOrUpdate(users);
+	public boolean saveOrUpdate(Users users) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(users);
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
-	/* Used for deleting user */
 	@Transactional
-	public void delete(Users users) {
-		sessionFactory.getCurrentSession().delete(users);
+	public boolean delete(Users users) {
+		try {
+			sessionFactory.getCurrentSession().delete(users);
+			
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
-	
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Transactional
 	public List<Users> list() {
@@ -36,23 +50,36 @@ public class UsersDAOImpl implements UsersDAO {
 		List<Users> list=c.list();
 		return list;
 	}
-
-	/* Used to retrieve single user based on username 
+	@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 	@Transactional
-	public Users getUser(String username) {
-		Criteria c=sessionFactory.getCurrentSession().createCriteria(Users.class);
-		c.add(Restrictions.eq("username", username));
-		Users users=(Users)c.uniqueResult();
-		return users;
-	}
-
-	@Transactional
-	public Users viewUser(int userid) {
-		Criteria c=sessionFactory.getCurrentSession().createCriteria(Users.class);
-		c.add(Restrictions.eq("userid", userid));
-		Users blog=(Users) c.uniqueResult();
-		return blog;
+	public Users getuser(int id) {
+		String hql = "from Users where id= "+ "'"+ id+"'" ;
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		List<Users>list= query.list();
 		
-	}*/
+		if(list==null)
+		{
+			return null;
+		}
+		else
+		{
+			return list.get(0);
+		}
+	}
+	@SuppressWarnings({ "rawtypes", "deprecation", "unchecked" })
+	@Transactional
+	public Users authuser(String username, String password) {
+		String hql="from Users where username= "+"'"+username+"'"+"and password= "+"'"+password+"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<Users>list=query.list();
+		if(list==null)
+		{
+			return null;
+		}
+		else
+		{
+			return list.get(0);
+		}
+	}
 
 }

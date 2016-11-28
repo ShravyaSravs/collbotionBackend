@@ -7,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.model.Event;
 
-
-
 @Repository(value="eventDAO")
 public class EventDAOImpl implements EventDAO {
 

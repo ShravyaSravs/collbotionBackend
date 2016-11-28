@@ -1,63 +1,63 @@
 package com.niit.model;
 
-
-
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
 @Table
+@Component
 public class Forum {
 	
 	@Id
 	@GeneratedValue
-	private int fid;
-	private int f_userid;
-	private String forumName;
-	private String forumDesc;
-	private Date forumtime;
-
-	public int getFid() {
-		return fid;
+	private int id;
+	private String name;
+	private String topic;
+	private int userid;
+	private Date doc;
+	private String description;
+	public int getId() {
+		return id;
 	}
-
-	public void setFid(int fid) {
-		this.fid = fid;
+	public void setId(int id) {
+		this.id = id;
 	}
-
-	public int getF_userid() {
-		return f_userid;
+	public String getName() {
+		return name;
 	}
-
-	public void setF_userid(int f_userid) {
-		this.f_userid = f_userid;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-	public String getForumName() {
-		return forumName;
+	public String getTopic() {
+		return topic;
 	}
-
-	public void setForumName(String forumName) {
-		this.forumName = forumName;
+	public void setTopic(String topic) {
+		this.topic = topic;
 	}
-
-	public String getForumDesc() {
-		return forumDesc;
+	public int getUserid() {
+		return userid;
 	}
-
-	public void setForumDesc(String forumDesc) {
-		this.forumDesc = forumDesc;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
-
-	public Date getForumtime() {
-		return forumtime;
+	public Date getDoc() {
+		return doc;
 	}
-
-	public void setForumtime(Date forumtime) {
-		this.forumtime = forumtime;
+	public void setDoc(Date doc) {
+		this.doc = doc;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 
 }

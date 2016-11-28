@@ -17,8 +17,8 @@ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-		<beans:property name="username" value="SHRAVYA" />
-		<beans:property name="password" value="shravya" />
+		<beans:property name="username" value="ASHRAVYA" />
+		<beans:property name="password" value="SHRAVYA" />
 	</beans:bean>
 
 	<!-- Session factory object and Hibernate properties for Oracle Data source -->
@@ -27,7 +27,7 @@ http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 		<beans:property name="hibernateProperties">
 			<beans:props>
 				<beans:prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</beans:prop>
-		   <!-- <beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop> -->
+		    <beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
 				<beans:prop key="hibernate.connection.SetBigStringTryClob">true</beans:prop>
 				<beans:prop key="hibernate.jdbc.batch_size">0</beans:prop>

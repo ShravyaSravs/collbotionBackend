@@ -6,17 +6,9 @@ import com.niit.model.Blog;
 
 public interface BlogDAO {
 
-	/*Used for creating or updating Blog*/
-	public void saveOrUpdate(Blog blog);
-	
-	/*Retrieves all Blogs*/
+	public boolean saveOrUpdate(Blog blog);
+	public boolean delete(Blog blog);
+	public Blog get(int id);
 	public List<Blog> list();
 	
-	/*Delete single Blog object*/
-	public void delete(Blog blog);
-	
-	/*Fetch single blog object based on blogid*/
-	public Blog get(int blogid);
-
-	public List<Blog> getIndividualForum(int blogid);
 }

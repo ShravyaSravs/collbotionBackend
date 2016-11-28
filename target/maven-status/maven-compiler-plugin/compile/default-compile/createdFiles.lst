@@ -1,6 +1,10 @@
+com\niit\controller\JobController.class
 com\niit\dao\BlogDAOImpl.class
 com\niit\dao\ForumDAO.class
+com\niit\controller\EventController.class
+com\niit\controller\ForumController.class
 com\niit\model\Blog.class
+com\niit\service\ForumService.class
 com\niit\controller\BlogController.class
 com\niit\dao\UsersDAO.class
 com\niit\model\Job.class
@@ -16,4 +20,5 @@ com\niit\model\Forum.class
 com\niit\model\Event.class
 com\niit\dao\EventDAOImpl.class
 com\niit\model\Users.class
+com\niit\service\ForumServiceImpl.class
 com\niit\dao\ForumDAOImpl.class

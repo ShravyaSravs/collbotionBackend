@@ -1,106 +1,90 @@
 package com.niit.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 @Entity
-@Table(name = "UserDetails")
+@Table(name="userdetails")
+@Component
 public class Users {
 
 	@Id
 	@GeneratedValue
-	private int userid;
+	private int id;
 	private String username;
-	private String name;
-	private String password;
-	private String gender;
-	private String email;
-	private int mobile;
-	private String Enabled;
 	private String role;
-	private byte[] image;
-
-	public int getUserid() {
-		return userid;
+	private String mail;
+	private String password;
+	private int  mobile;
+	private String address;
+	private Date dob;
+	private String gender;
+	private char status;
+	public int getId() {
+		return id;
 	}
-
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setId(int id) {
+		this.id = id;
 	}
-
 	public String getUsername() {
 		return username;
 	}
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getEnabled() {
-		return Enabled;
-	}
-
-	public void setEnabled(String enabled) {
-		Enabled = enabled;
-	}
-
-	public int getMobile() {
-		return mobile;
-	}
-
 	public String getRole() {
 		return role;
 	}
-
 	public void setRole(String role) {
 		this.role = role;
 	}
-
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public int getMobile() {
+		return mobile;
+	}
 	public void setMobile(int mobile) {
 		this.mobile = mobile;
 	}
-
-	public byte[] getImage() {
-		return image;
+	public String getAddress() {
+		return address;
 	}
-
-	public void setImage(byte[] image) {
-		this.image = image;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-
-
+	public Date getDob() {
+		return dob;
+	}
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public char getStatus() {
+		return status;
+	}
+	public void setStatus(char status) {
+		this.status = status;
+	}
+	
 }

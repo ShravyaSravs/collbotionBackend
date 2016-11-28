@@ -3,58 +3,65 @@ package com.niit.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.model.Blog;
 
-@Repository
-@SuppressWarnings({"unchecked" , "deprecation"})
+@Repository(value="blogDAO")
 public class BlogDAOImpl implements BlogDAO {
-
+	
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	/*Used for creating or updating Blog*/
-	@Transactional
-	public void saveOrUpdate(Blog blog) {
-		sessionFactory.getCurrentSession().saveOrUpdate(blog);
+	public BlogDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory=sessionFactory;
+	}
+@Transactional
+	public boolean saveOrUpdate(Blog blog) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(blog);
+			System.out.println("save");
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
-	/*Retrieves all Blogs*/
+	@Transactional
+	public boolean delete(Blog blog) {
+		try {
+			sessionFactory.getCurrentSession().delete(blog);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Transactional
 	public List<Blog> list() {
 		Criteria c=sessionFactory.getCurrentSession().createCriteria(Blog.class);
 		List<Blog> list=c.list();
 		return list;
 	}
-
-	/*Delete single Blog object*/
 	@Transactional
-	public void delete(Blog blog) {
-		sessionFactory.getCurrentSession().delete(blog);
+	public Blog get(int id) {
+		String hql = "from Blog where id= "+ "'"+ id+"'" ;
+		Query query=sessionFactory.getCurrentSession().createQuery(hql);
+		List<Blog>list= query.list();
+		
+		if(list==null)
+		{
+			return null;
+		}
+		else
+		{
+			return list.get(0);
+		}
 	}
-
-	/*Fetch single blog object based on blogid*/
-	@Transactional
-	public Blog get(int blogid) {
-		Criteria c=sessionFactory.getCurrentSession().createCriteria(Blog.class);
-		c.add(Restrictions.eq("bid", blogid));
-		Blog blog=(Blog) c.uniqueResult();
-		return blog;
-	}
-
-	@Transactional
-	public List<Blog> getIndividualForum(int blogid) {
-		Criteria c=sessionFactory.getCurrentSession().createCriteria(Blog.class);
-		c.add(Restrictions.eq("bid", blogid));
-		List<Blog> list=c.list();
-		return list;
-	}
-
-	
 
 }
